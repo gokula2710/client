@@ -46,7 +46,12 @@ const LabDetails = ({ labs }) => {
                 const json = await response.json()
 
                 if (response.ok) {
-                    navigate(`/main`, { state: { eqp: json } })
+                    if (window.location.pathname === '/lab') {
+                        navigate(`/main`, { state: { eqp: json } })
+                    }
+                    else{
+                        navigate(`/main`)
+                    }
 
                 }
                 else {
@@ -68,7 +73,7 @@ const LabDetails = ({ labs }) => {
     }
     const gotoLabs = () => {
         console.log(labs)
-        navigate(`/lab/${labs._id}`,{state:{labs}})
+        navigate(`/lab/${labs._id}`, { state: { labs } })
     }
     return (
         <div className="workout-details">
@@ -79,7 +84,7 @@ const LabDetails = ({ labs }) => {
             <span className="material-symbols-outlined" onClick={handleClick}>Delete</span>
             <div>
                 <button onClick={gotoLabs}>About </button>
-                <button onClick={changePage}>Equipments</button>
+                <button onClick={changePage}>Equipment</button>
             </div>
         </div>
     )
