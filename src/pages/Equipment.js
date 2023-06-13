@@ -1,20 +1,19 @@
-import { useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom";
+import { format } from 'date-fns'
 const Equipment = () => {
     const eqp = useLocation().state.workout
-    //console.log(eqp)
+    const purchaseDate = format(new Date(eqp.dop), 'dd-MM-yyyy')
+    const warrantyDate = format(new Date(eqp.dop), 'dd-MM-yyyy')
     return (
         <div className="equipment-view">
-            <div className="image">
-                <img src={''} alt="equipment" /></div>
             <div className="info">
-                <h2>Name: <span className="value">{eqp.name}</span></h2>
-                <h2>Type: <span className="value">{eqp.type}</span></h2>
-                <h2>Brand: <span className="value">{eqp.brand}</span></h2>
-                <h2>Date of Purchase: <span className="value">{eqp.dop}</span></h2>
-                <h2>Warranty: <span className="value">{eqp.warranty}</span></h2>
-                <h2>Condition: <span className="value">{eqp.condition}</span></h2>
-                <h2>Current Location: <span className="value">{eqp.location}</span></h2>
-                <h2>Lab: <span className="value">{eqp.lab}</span></h2>
+                <h2>Name <span className="value">{eqp.name}</span></h2>
+                <h2>Type <span className="value">{eqp.type}</span></h2>
+                <h2>Brand <span className="value">{eqp.brand}</span></h2>
+                <h2>Purchase Date <span className="value">{purchaseDate}</span></h2>
+                <h2>Warranty <span className="value">{warrantyDate}</span></h2>
+                <h2>Condition <span className="value">{eqp.condition}</span></h2>
+                <h2>Lab <span className="value">{eqp.lab}</span></h2>
 
             </div>
         </div>
