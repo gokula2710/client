@@ -44,7 +44,8 @@ const WorkoutDetails = ({ workout }) => {
     }, [user])
 
 
-    const handleClick = async () => {
+    const handleClick = async (e) => {
+        e.preventDefault()
         if (window.confirm("Are you sure you want to delete this equipment?")) {
             if (!user) {
                 console.log("Authorization Required")
@@ -120,7 +121,7 @@ const WorkoutDetails = ({ workout }) => {
             <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
             <span className="material-symbols-outlined" onClick={handleClick}>Delete</span>
             <div className="lab-list">
-                <p><strong>Select a Lab Code:</strong></p>
+                <p><strong>Transfer:</strong></p>
                 <select value={selectedOption} onChange={(e) => { setSelectedOption(e.target.value) }}>
                     <option value="">Select Lab</option>
                     {labs.map((lab) => (
