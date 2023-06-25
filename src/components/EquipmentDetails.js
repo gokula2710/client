@@ -7,13 +7,15 @@ import { useNavigate } from "react-router-dom"
 const WorkoutDetails = ({ workout }) => {
     const navigate = useNavigate()
     const [selectedOption, setSelectedOption] = useState('')
+    const [selectedStatus, setSelectedStatus] = useState('')
     const [labs, setLabs] = useState([])
-    const[allocated,setAllocated]=useState(false)
+    const [allocated, setAllocated] = useState(false)
     const { dispatch } = useEquipmentsContext()
     const { user } = useAuthContext()
     useEffect(() => {
 
         const getLabs = async () => {
+            
             try {
                 const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/api/labs`, {
                     headers: {
@@ -103,13 +105,41 @@ const WorkoutDetails = ({ workout }) => {
     }
     //
     const gotoEquipment = () => {
-        
+
         if (allocated) {
             workout.lab = selectedOption
         }
         navigate(`/equipment`, { state: { workout } })
         //
     }
+
+
+    const update = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/api/equipments/${workout._id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                },body: JSON.stringify({ condition: selectedStatus })
+            })
+            const json = await response.json()
+            if (response.ok) {
+                console.log('Update Successful')
+
+            }
+            if (!response.ok) {
+                console.log(json)
+            }
+
+        }
+        catch (error) {
+            console.log(error.message)
+        }
+    }
+
+
     return (
 
         <div className="workout-details">
@@ -121,6 +151,13 @@ const WorkoutDetails = ({ workout }) => {
             <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
             <span className="material-symbols-outlined" onClick={handleClick}>Delete</span>
             <div className="lab-list">
+                <p><strong>Update:</strong></p>
+                <select value={selectedStatus} onChange={(e) => { setSelectedStatus(e.target.value) }}>
+                    <option value="Working">Working</option>
+                    <option value="Not Working">Not Working</option>
+                    <option value="Under Repair">Under Repair</option>
+                    <option value="Unavailable">Unavailable</option>
+                </select>
                 <p><strong>Transfer:</strong></p>
                 <select value={selectedOption} onChange={(e) => { setSelectedOption(e.target.value) }}>
                     <option value="">Select Lab</option>
@@ -129,6 +166,7 @@ const WorkoutDetails = ({ workout }) => {
                     ))}
                 </select>
                 <button onClick={gotoEquipment}>Details</button>
+                <button onClick={update}>Update</button>
                 <button onClick={allocate}>Allocate</button>
             </div>
         </div>
