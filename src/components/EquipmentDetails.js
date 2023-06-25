@@ -114,9 +114,9 @@ const WorkoutDetails = ({ workout }) => {
 
         <div className="workout-details">
             <h4>{workout.name}</h4>
-            <p><strong>Purchase:</strong>{format(new Date(workout.dop), 'dd-MM-yyyy')}</p>
-            <p><strong>Type:</strong>{workout.type}</p>
-            <p><strong>ID:</strong>{workout.id}</p>
+            <p><strong>Purchase:&nbsp;</strong>{format(new Date(workout.dop), 'dd-MM-yyyy')}</p>
+            <p><strong>Type:&nbsp;</strong>{workout.type}</p>
+            <p><strong>ID:&nbsp;</strong>{workout.id}</p>
 
             <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
             <span className="material-symbols-outlined" onClick={handleClick}>Delete</span>
