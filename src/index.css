@@ -3,7 +3,7 @@
 
 /* layout */
 :root {
-  --primary: #1aac83;
+  --primary: linear-gradient(to bottom right, rgb(74, 144, 226), #7044ff);
   --error: #e7195a;
 }
 
@@ -20,6 +20,7 @@ header div{
 
 header .container {
   width: 100%;
+  max-width: 14000px;
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
@@ -37,7 +38,7 @@ header span {
 }
 
 .pages {
-  max-width: 1400px;
+  max-width: 14000px;
   padding: 20px;
   margin: 0 auto;
 }
@@ -56,46 +57,53 @@ header span {
   justify-content: center;
   text-align: center;
   align-items: center;
-  max-width: 100%;
+  width: 100%;
+  max-width: 10000px;
 }
 
 .home-pages .dashboard {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  gap: 25px;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  gap: 40px;
+  justify-content: center;
   font-size: 25px;
   background-color: #ffff;
   border-radius: 10px;
   padding: 20px;
-  width: 70%;
-  height: 70%;
-  
+  width: 100%;
+  height: 80vh;
+  max-width: 85vw;
 }
 
 .dashboard .container {
   background: linear-gradient(to bottom right, rgb(74, 144, 226), #7044ff);
-  height: 75%;
-  width: 60%;
+  /*background: var(--primary);*/
+  height: 70%;
+  width: 70%;
   padding: 20px;
   justify-content: space-between;
-  border-radius: 12px;
+  border-radius: 10px;
   flex-direction: column;
   display:flex;
-  margin-bottom: 40px;
-
+  color: #fff;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-
+.dashboard .container p {
+  font-size: 27px;
+  font-weight: 600;
+}
 
 .home-pages a {
   background: #fff;
-  color: var(--primary);
-  border: 3px solid #333;
+  color: #333;
+  /* border: 4px solid #333; */
+  padding: 5px 5px 5px 5px;
   border-radius: 100px;
   font-family: "Poppins";
   cursor: pointer;
   font-size: .8em;
+  margin: 10px 10px;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
 }
@@ -117,7 +125,9 @@ header span {
 .workout-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
-  color: var(--primary);
+  background-image: linear-gradient(to bottom right, rgb(74, 144, 226), #7044ff);
+  background-clip: text;
+  color: transparent;
 }
 
 .workout-details p {
@@ -166,6 +176,7 @@ header span {
   background: var(--primary);
   color: #fff;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
 
 .welcome {
@@ -187,7 +198,9 @@ header span {
 .welcome a {
   text-decoration: none;
   color: #fff;
-  background: var(--primary);
+  background-image: linear-gradient(to bottom right, rgb(74, 144, 226), #7044ff);
+  background-clip: text;
+  color: transparent;
   padding: 10px 20px 10px 20px;
   border-radius: 4px;
   display: inline-block;
@@ -208,7 +221,7 @@ header span {
 }
 
 .workout-form button:hover {
-  background: #e0e0e0;
+  box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
 }
 
 .workout-form label {
@@ -220,7 +233,9 @@ header span {
 .workout-form h3 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
-  color: var(--primary);
+  background-image: linear-gradient(to bottom right, rgb(74, 144, 226), #7044ff);
+  background-clip: text;
+  color: transparent;
 }
 
 .workout-form .error {
@@ -257,7 +272,9 @@ header span {
 .home a {
   text-decoration: none;
   color: #fff;
-  background: var(--primary);
+  background-image: linear-gradient(to bottom right, rgb(74, 144, 226), #7044ff);
+  background-clip: text;
+  color: transparent;
   padding: 10px 20px;
   border-radius: 4px;
   display: inline-block;
@@ -271,8 +288,11 @@ header span {
 
 .nav-buttons a {
   background: #fff;
-  color: var(--primary);
-  border: 2px solid var(--primary);
+  background: linear-gradient(white, white) padding-box,
+  linear-gradient(to bottom right, rgb(74, 144, 226), #7044ff) border-box;
+  border: 2px solid transparent;
+  /*color: #1aac83;
+  border: 2px solid #1aac83;*/
   padding: 6px 10px;
   border-radius: 4px;
   font-family: "Poppins";
@@ -280,6 +300,14 @@ header span {
   font-size: 1em;
   margin: 10px 10px;
   transition: all 0.2s ease-in-out;
+}
+
+.nav-buttons div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+  padding-right: 20px;
 }
 
 .nav-buttons a:hover {
@@ -538,15 +566,19 @@ h3 {
 .reset-btn {
   padding: 10px 20px;
   margin-left: 10px;
-  background-color: var(--primary);
+  background-image: linear-gradient(to bottom right, rgb(74, 144, 226), #7044ff);
+  color: transparent;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+  font-size: 16px;
+  font-weight: 200;
 }
 .reset-btn:hover {
-  background-color: #333;
+  /* background-color: #333; */
+  opacity: 0.9;
 }
 .search-field {
   padding: 10px;
@@ -555,6 +587,10 @@ h3 {
   border-radius: 4px;
   transition: box-shadow 0.3s;
   
+}
+
+.search {
+  width: 75%;
 }
 
 .search-field:focus {
@@ -570,7 +606,8 @@ h3 {
   text-align: left;
 }
 .pdf-preview{
-  background-color: #1aac83;
+  background-image: linear-gradient(to bottom right, rgb(74, 144, 226), #7044ff);
+  color: transparent;  
   padding: 2px;
   border-radius: 15px;
   font-size: 1em;
