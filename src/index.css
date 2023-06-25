@@ -365,7 +365,7 @@ div.lab-list {
   grid-template-columns: 1fr 1fr;
   padding-bottom: 0;
   padding: 0.5rem;
-  margin: 0rem 0rem 0rem 38rem;
+  margin: 0rem 0rem 0rem 15rem;
   gap: 5px;
   justify-content: center;
   align-items: baseline;

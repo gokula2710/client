@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 const WorkoutDetails = ({ workout }) => {
     const navigate = useNavigate()
     const [selectedOption, setSelectedOption] = useState('')
-    const [selectedStatus, setSelectedStatus] = useState('')
+    const [selectedStatus, setSelectedStatus] = useState('Working')
     const [labs, setLabs] = useState([])
     const [allocated, setAllocated] = useState(false)
     const { dispatch } = useEquipmentsContext()
@@ -160,7 +160,7 @@ const WorkoutDetails = ({ workout }) => {
                 </select>
                 <p><strong>Transfer:</strong></p>
                 <select value={selectedOption} onChange={(e) => { setSelectedOption(e.target.value) }}>
-                    <option value="">Select Lab</option>
+                    <option value=''>Select Lab</option>
                     {labs.map((lab) => (
                         <option key={lab._id} value={lab.code}>{lab.code}</option>
                     ))}
