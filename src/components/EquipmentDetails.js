@@ -160,7 +160,7 @@ const WorkoutDetails = ({ workout }) => {
                 </select>
                 <p><strong>Transfer:</strong></p>
                 <select value={selectedOption} onChange={(e) => { setSelectedOption(e.target.value) }}>
-                    <option value=''>Select Lab</option>
+                    <option value=''>None</option>
                     {labs.map((lab) => (
                         <option key={lab._id} value={lab.code}>{lab.code}</option>
                     ))}

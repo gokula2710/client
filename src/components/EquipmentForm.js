@@ -110,6 +110,7 @@ const EquipmentForm = () => {
                 </select>
                 <label>Lab</label>
                 <select  onChange={(e) => setLab(e.target.value)}>
+                    <option value=''>None</option>
                     {labs.map((labt) => (
                         <option key={labt._id} value={labt.code}>{labt.name}</option>
                     ))}
