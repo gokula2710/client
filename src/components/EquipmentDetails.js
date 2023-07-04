@@ -2,50 +2,16 @@ import { useEquipmentsContext } from "../hooks/useEquipmentContext"
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 import { format } from 'date-fns'
 import { useAuthContext } from "../hooks/useAuthContext"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-const WorkoutDetails = ({ workout }) => {
+const WorkoutDetails = ({ workout,labs }) => {
     const navigate = useNavigate()
     const [selectedOption, setSelectedOption] = useState('')
     const [selectedStatus, setSelectedStatus] = useState('Working')
-    const [labs, setLabs] = useState([])
+    const {user} =useAuthContext()
     const [allocated, setAllocated] = useState(false)
     const { dispatch } = useEquipmentsContext()
-    const { user } = useAuthContext()
-    useEffect(() => {
-
-        const getLabs = async () => {
-            
-            try {
-                const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/api/labs`, {
-                    headers: {
-                        'Authorization': `Bearer ${user.token}`,
-                    }
-                })
-                const json = await response.json()
-
-                if (response.ok) {
-                    setLabs(json)
-                }
-                else {
-                    console.log(json)
-                }
-            }
-            catch (error) {
-                console.log(error.message)
-            }
-
-        }
-        if (user) {
-            getLabs()
-        }
-        else {
-            console.log("Authorization required")
-        }
-
-    }, [user])
-
-
+   
     const handleClick = async (e) => {
         e.preventDefault()
         if (window.confirm("Are you sure you want to delete this equipment?")) {
@@ -146,8 +112,8 @@ const WorkoutDetails = ({ workout }) => {
             <h4>{workout.name}</h4>
             <p><strong>Purchase:&nbsp;</strong>{format(new Date(workout.dop), 'dd-MM-yyyy')}</p>
             <p><strong>Type:&nbsp;</strong>{workout.type}</p>
+            <p><strong>Condition:&nbsp;</strong>{workout.condition}</p>
             <p><strong>ID:&nbsp;</strong>{workout.id}</p>
-
             <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
             <span className="material-symbols-outlined" onClick={handleClick}>Delete</span>
             <div className="lab-list">

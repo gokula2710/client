@@ -9,8 +9,37 @@ const Home = () => {
     const { workouts, dispatch } = useEquipmentsContext()
     const { user } = useAuthContext()
     const [search, setSearch] = useState(workouts)
+    const [labs,setLabs]=useState([])    
     useEffect(() => {
         handleReset()
+        const getLabs = async () => {
+            
+            try {
+                const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/api/labs`, {
+                    headers: {
+                        'Authorization': `Bearer ${user.token}`,
+                    }
+                })
+                const json = await response.json()
+
+                if (response.ok) {
+                    setLabs(json)
+                }
+                else {
+                    console.log(json)
+                }
+            }
+            catch (error) {
+                console.log(error.message)
+            }
+
+        }
+        if (user) {
+            getLabs()
+        }
+        else {
+            console.log("Authorization required")
+        }
 
         const getWorkouts = async () => {
             try {
@@ -102,7 +131,7 @@ const Home = () => {
                     </div>
                         {search && search.map((workout, index) => (
                             <div key={index}>
-                                <EquipmentDetails workout={workout} key={workout._id} />
+                                <EquipmentDetails workout={workout} labs={labs} key={workout._id} />
                             </div>
                         ))
                         }
@@ -117,7 +146,7 @@ const Home = () => {
                     <div className="workouts">
                         {eqpCopy && eqpCopy.map((eqpCopy, index) => (
                             <div key={index}>
-                                <EquipmentDetails workout={eqpCopy} key={eqpCopy._id} />
+                                <EquipmentDetails workout={eqpCopy} labs={labs} key={eqpCopy._id} />
                             </div>
                         ))
                         }
