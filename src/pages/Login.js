@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import {useLogin} from '../hooks/useLogin'
 const Login=()=>{
     const [id,setId]=useState('')
@@ -8,6 +8,9 @@ const Login=()=>{
         e.preventDefault()
         await login(id,password)
     }
+    useEffect(()=>{
+        alert("For Testing use admin/password123")
+    },[])
 
     return(    
             <form className="login" onSubmit={handleSubmit}>
