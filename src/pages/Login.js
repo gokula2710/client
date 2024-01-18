@@ -9,7 +9,7 @@ const Login=()=>{
         await login(id,password)
     }
     useEffect(()=>{
-        alert("For Testing use admin/password123")
+        alert("For Testing use admin/Admin@123")
     },[])
 
     return(    
